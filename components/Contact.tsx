@@ -13,7 +13,7 @@ export default function Contact() {
     const formData = new FormData(form);
 
     try {
-      const res = await fetch("../app/api/contact", {
+      const res = await fetch("api/contact", {
         method: "POST",
         body: formData,
       });
