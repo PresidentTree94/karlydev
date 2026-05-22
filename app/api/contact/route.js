@@ -1,14 +1,18 @@
-import { Resend } from 'resend';
+import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req) {
-  const { name, email, subject, message } = await req.json();
-
   try {
+    const formData = await req.formData();
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const subject = formData.get("subject");
+    const message = formData.get("message");
+
     await resend.emails.send({
-      from: 'karly.dev <onboarding@resend.dev>',
-      to: 'karlysams1218@gmail.com',
+      from: "karly.dev <onboarding@resend.dev>",
+      to: "karlysams1218@gmail.com",
       subject: `New message from ${subject}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
@@ -19,6 +23,7 @@ export async function POST(req) {
 
     return Response.json({ success: true });
   } catch (error) {
-    return Response.json({ error }, { status: 500 });
+    console.error("Contact form error:", error);
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }
