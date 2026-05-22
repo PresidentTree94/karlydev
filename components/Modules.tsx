@@ -39,7 +39,7 @@ export default function Modules({ title, modules, pricingModules, selectedModule
         {modules.map((module: any) => {
           const isSelected = module.multiple ? (selectedModules[module.id] as number) > 0 : (selectedModules[module.id] as boolean);
           return (
-            <button key={module.id} className={`flex flex-col sm:flex-row items-center gap-4 p-4 rounded-xl border border-stone-200 w-full text-center sm:text-left ${module.isDisabled ? "bg-stone-50 opacity-50" : "cursor-pointer"}`} disabled={module.isDisabled} onClick={() => toggleModule(module)}>
+            <button key={module.id} className={`grid grid-cols-1 sm:grid-cols-[auto_auto_1fr_auto] justify-items-center sm:justify-items-start items-center gap-4 p-4 rounded-xl border border-stone-200 w-full text-center sm:text-left ${module.isDisabled ? "bg-stone-50 opacity-50" : "cursor-pointer"} ${isSelected ? "border-stone-900 bg-stone-50" : "border-stone-200 transition-colors hover:border-stone-300"}`} disabled={module.isDisabled} onClick={() => toggleModule(module)}>
               <div className={`w-5 h-5 border-2 rounded ${isSelected ? "border-stone-900 bg-stone-900" : "border-stone-300 bg-transparent"} flex justify-center items-center`}>
                 <i className="ri-check-line text-xs text-white"></i>
               </div>
@@ -54,22 +54,22 @@ export default function Modules({ title, modules, pricingModules, selectedModule
                 <p className="text-sm font-bold text-stone-900">${module.price}</p>
                 <p className="text-xs text-stone-400">{module.multiple ? "per page" : module.isBuild ? "one-time" : "per month"}</p>
               </div>
-              {(module.multiple && isSelected) && <div className="col-span-full flex items-center gap-3">
+              {(module.multiple && isSelected) && <div className="col-span-full flex items-center gap-3 mx-auto sm:ml-14 sm:mr-0">
                 <span className="text-xs text-stone-500">Quantity:</span>
-                <div className="flex items-center gap-2 border border-stone-200 rounded-lg">
+                <div className="flex items-center gap-2 border border-stone-200 rounded-lg bg-white">
                   <button
-                    className="w-7 h-7 flex justify-center items-center text-stone-600"
+                    className="w-7 h-7 flex justify-center items-center text-stone-600 cursor-pointer hover:bg-stone-100"
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedModules(prev => ({...prev, [module.id]: (prev[module.id] as number) - 1}));
-                    }}>-</button>
+                    }}><i className="ri-subtract-line text-xs"></i></button>
                   <span className="text-sm font-semibold text-stone-900 w-5 text-center">{selectedModules[module.id]}</span>
                   <button
-                    className="w-7 h-7 flex justify-center items-center text-stone-600"
+                    className="w-7 h-7 flex justify-center items-center text-stone-600 cursor-pointer hover:bg-stone-100"
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedModules(prev => ({...prev, [module.id]: (prev[module.id] as number) + 1}));
-                    }}>+</button>
+                    }}><i className="ri-add-line text-xs"></i></button>
                 </div>
                 <span className="text-xs text-stone-500">= <span className="text-stone-800 font-bold">${module.price * (selectedModules[module.id] as number)}</span></span>
               </div>}

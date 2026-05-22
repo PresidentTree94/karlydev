@@ -113,9 +113,9 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl text-stone-900 mt-10 mb-8">Websites built right, <span className="italic text-amber-500 block">priced fairly.</span></h1>
           <p className="text-stone-500 text-lg md:text-xl max-w-2xl">Freelance junior web developer crafting clean, fast, accessible sites for small businesses and creatives. Start with a base, add only what you need.</p>
           <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 text-sm">
-            <a href="#" className="bg-stone-900 text-white font-semibold px-8 py-4 rounded-full">View My Work</a>
-            <a href="#pricing" className="bg-white border border-stone-300 text-stone-700 font-semibold px-8 py-4 rounded-full">Build Your Quote</a>
-            <a href="#contact" className="text-stone-500 font-medium underline underline-offset-4">Let's talk <i className="ri-arrow-right-line"></i></a>
+            <a href="#" className="bg-stone-900 text-white font-semibold px-8 py-4 rounded-full transition-colors hover:bg-stone-700">View My Work</a>
+            <a href="#pricing" className="bg-white border border-stone-300 text-stone-700 font-semibold px-8 py-4 rounded-full transition-colors hover:border-stone-500 hover:text-stone-900">Build Your Quote</a>
+            <a href="#contact" className="text-stone-500 font-medium underline underline-offset-4 transition-colors hover:text-stone-800">Let's talk <i className="ri-arrow-right-line"></i></a>
           </div>
         </div>
       </section>
@@ -138,12 +138,15 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 bg-stone-50 border border-stone-200 rounded-2xl mt-12 text-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-4 p-6 bg-stone-50 border border-stone-200 rounded-2xl mt-12 text-sm text-center sm:text-left">
+            <div className="w-10 h-10 bg-stone-200 rounded-xl flex justify-center items-center">
+              <i className="ri-price-tag-3-line text-xl text-stone-600"></i>
+            </div>
             <div className="flex-1">
               <p className="font-semibold text-stone-800 mb-0.5">No bundles, no bloat.</p>
               <p className="text-stone-500">Build your own quote — pick exactly what your project needs.</p>
             </div>
-            <a href="#pricing" className="font-semibold text-stone-800">See pricing <i className="ri-arrow-down-line"></i></a>
+            <a href="#pricing" className="font-semibold text-stone-800 transition-colors hover:text-amber-600">See pricing <i className="ri-arrow-down-line"></i></a>
           </div>
         </div>
       </section>
@@ -163,7 +166,7 @@ export default function Home() {
             </div>
             <h3 className="font-display text-xl font-semibold text-stone-800">Projects are being crafted right now</h3>
             <p className="text-stone-500 text-sm max-w-md mt-2 mb-6">Check back soon — exciting work is on the way. In the meantime, feel free to reach out if you'd like to be part of the showcase.</p>
-            <a href="#contact" className="text-sm font-medium text-amber-600">Start a project <i className="ri-arrow-right-line"></i></a>
+            <a href="#contact" className="text-sm font-medium text-amber-600 transition-colors hover:text-amber-700">Start a project <i className="ri-arrow-right-line"></i></a>
           </div>
         </div>
       </section>
@@ -179,7 +182,7 @@ export default function Home() {
         </div>
       </section>
       {/* Contract Section */}
-      <section id="contract">
+      <section id="terms">
         <div>
           <div className="flex flex-col lg:flex-row justify-between lg:items-end gap-8 mb-16">
             <div>
@@ -204,7 +207,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-white font-display">Want the full contract?</h3>
               <p className="text-sm text-stone-400 mt-2">A detailed contract is sent before any project begins. It covers IP, revisions, timelines, and cancellation policies.</p>
             </div>
-            <a href="#contact" className="bg-amber-400 text-stone-900 text-sm font-bold px-7 py-3.5 rounded-xl">Request Contract Draft</a>
+            <a href="#contact" className="bg-amber-400 text-stone-900 text-sm font-bold px-7 py-3.5 rounded-xl transition-colors hover:bg-amber-300">Request Contract Draft</a>
           </div>*/}
         </div>
       </section>
@@ -249,7 +252,7 @@ export default function Home() {
               <textarea placeholder="What are you building? What's the goal?" rows={5} maxLength={500} className="resize-none" onChange={(e) => setCharCount(e.target.value.length)} required></textarea>
               <p className={`text-xs ${charCount > 480 ? "text-amber-600" : "text-stone-400"} text-right`}>{charCount}/500</p>
             </div>
-            <button type="submit" className="text-sm bg-stone-900 text-white w-full font-semibold py-3.5 rounded-xl">Send Message</button>
+            <button type="submit" className="text-sm bg-stone-900 text-white w-full font-semibold py-3.5 rounded-xl cursor-pointer transition-colors hover:bg-stone-700">Send Message</button>
           </form>
         </div>
       </section>

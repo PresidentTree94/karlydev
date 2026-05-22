@@ -251,7 +251,7 @@ export default function Pricing() {
               <span className="text-lg text-amber-400">${calculateMonthlyTotal()}/mo</span>
             </div>
           </div>}
-          <a href="#contact" className="bg-amber-400 text-stone-900 text-sm font-bold text-center py-3.5 rounded-xl block mb-3">Start Your Project</a>
+          <a href="#contact" className="bg-amber-400 text-stone-900 text-sm font-bold text-center py-3.5 rounded-xl block mb-3 transition-colors hover:bg-amber-300">Start Your Project</a>
           <p className="text-xs text-stone-500 text-center">Fixed pricing. No surprises, no negotiations — what you see is what you pay.</p>
         </div>
       </div>

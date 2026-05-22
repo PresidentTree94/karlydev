@@ -35,9 +35,9 @@ export default function RootLayout({
         <footer className="bg-stone-100 text-xs text-stone-400 py-6">
           <div className="flex justify-between items-center">
             <p>&copy; {new Date().getFullYear()} karly.dev</p>
-            <div className="flex gap-2">
-              <Link href="/privacy-policy">Privacy</Link>
-              <Link href="/accessibility">Accessibility</Link>
+            <div className="flex gap-3">
+              <Link href="/privacy-policy" className="transition-colors hover:text-stone-700">Privacy</Link>
+              <Link href="/accessibility" className="transition-colors hover:text-stone-700">Accessibility</Link>
             </div>
           </div>
         </footer>
