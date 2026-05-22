@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Link from "next/link";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair-display",
   subsets: ["latin"],
+  style: ["normal", "italic"]
 });
 
 const inter = Inter({
@@ -23,9 +26,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en" className={`${playfairDisplay.variable} ${inter.variable} antialiased`}>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        <footer className="bg-stone-100 text-xs text-stone-400 py-6">
+          <div className="flex justify-between items-center">
+            <p>&copy; {new Date().getFullYear()} karly.dev</p>
+            <div className="flex gap-2">
+              <Link href="/privacy-policy">Privacy</Link>
+              <Link href="/accessibility">Accessibility</Link>
+            </div>
+          </div>
+        </footer>
+      </body>
     </html>
   );
 }

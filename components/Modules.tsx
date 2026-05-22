@@ -39,8 +39,10 @@ export default function Modules({ title, modules, pricingModules, selectedModule
         {modules.map((module: any) => {
           const isSelected = module.multiple ? (selectedModules[module.id] as number) > 0 : (selectedModules[module.id] as boolean);
           return (
-            <button key={module.id} className={`flex items-center gap-4 p-4 rounded-xl border border-stone-200 w-full text-left ${module.isDisabled ? "bg-stone-50 opacity-50" : "cursor-pointer"}`} disabled={module.isDisabled} onClick={() => toggleModule(module)}>
-              <div className={`w-5 h-5 border-2 rounded ${isSelected ? "border-stone-900 bg-stone-900" : "border-stone-300 bg-transparent"}`}></div>
+            <button key={module.id} className={`flex flex-col sm:flex-row items-center gap-4 p-4 rounded-xl border border-stone-200 w-full text-center sm:text-left ${module.isDisabled ? "bg-stone-50 opacity-50" : "cursor-pointer"}`} disabled={module.isDisabled} onClick={() => toggleModule(module)}>
+              <div className={`w-5 h-5 border-2 rounded ${isSelected ? "border-stone-900 bg-stone-900" : "border-stone-300 bg-transparent"} flex justify-center items-center`}>
+                <i className="ri-check-line text-xs text-white"></i>
+              </div>
               <div className="w-8 h-8 bg-stone-100 rounded-lg flex justify-center items-center">
                 <i className={`${module.icon} text-stone-600 text-sm`}></i>
               </div>
@@ -48,7 +50,7 @@ export default function Modules({ title, modules, pricingModules, selectedModule
                 <p className="text-sm font-semibold text-stone-900">{module.title}</p>
                 <p className="text-xs text-stone-500">{module.description}</p>
               </div>
-              <div className="text-right">
+              <div className="text-center sm:text-right">
                 <p className="text-sm font-bold text-stone-900">${module.price}</p>
                 <p className="text-xs text-stone-400">{module.multiple ? "per page" : module.isBuild ? "one-time" : "per month"}</p>
               </div>
