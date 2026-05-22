@@ -32,7 +32,7 @@ export default function Navbar() {
           <a href="/" className="font-display font-bold text-lg text-stone-800">karly<span className="text-amber-500">.dev</span></a>
           <i className={`${open ? "ri-close-line" : "ri-menu-3-line"} text-stone-800 text-xl inline-block md:hidden`} onClick={() => setOpen(!open)}></i>
         </div>
-        <nav className={`${open ? "flex" : "hidden md:flex"} flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 text-sm font-medium text-stone-700 px-6 py-6 md:py-0 border-t border-stone-100`}>
+        <nav className={`${open ? "flex" : "hidden md:flex"} flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 text-sm font-medium text-stone-700 px-6 py-6 md:py-0 border-t md:border-none border-stone-100`}>
           {navs.map((n, index) => (
             <a key={index} href={n.link} className="transition-colors hover:text-amber-600" onClick={() => setOpen(false)}>{n.text}</a>
           ))}

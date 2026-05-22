@@ -55,7 +55,7 @@ export default function Pricing() {
       title: "Basic Contact Form",
       icon: "ri-mail-send-line",
       isBuild: true,
-      description: "A professional contact form so visitors can reach you directly. Includes spam protection and email delivery.",
+      description: "A professional contact form so visitors can email you directly. Includes spam protection. Requires a Resend account.",
       price: 150,
       multiple: false
     },
