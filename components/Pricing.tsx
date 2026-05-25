@@ -2,21 +2,23 @@
 import React, { useState } from "react";
 import Modules from "./Modules";
 
-const buildBase = ["Project setup & configuration", "Responsive design", "CSS effects & polish", "Basic SEO", "Accessibility compliance", "Header & footer", "Homepage", "404 page", "Vercel deployment", "Analytics setup"];
-
-type Module = {
-  id: string;
-  title: string;
-  icon: string;
-  isBuild: boolean;
-  description: string;
-  price: number;
-  multiple: boolean;
-  dependsOn?: string[];
-  isDisabled?: boolean;
+type Price = {
+  baseprice: number;
+  build: string[];
+  modules: {
+    id: string;
+    title: string;
+    icon: string;
+    isBuild: boolean;
+    description: string;
+    price: number;
+    multiple: boolean;
+    dependsOn: string[];
+    disabledBy: string;
+  }[]
 }
 
-export default function Pricing() {
+export default function Pricing({ pricingData }: { pricingData: Price; }) {
 
   const [selectedModules, setSelectedModules] = useState<Record<string, number | boolean>>({
     additionalpages: 0,
@@ -31,110 +33,8 @@ export default function Pricing() {
     formmanage: false
   });
 
-  const pricingModules: Module[] = [
-    // BUILD MODULES
-    {
-      id: "additionalpages",
-      title: "Additional Page",
-      icon: "ri-file-add-line",
-      isBuild: true,
-      description: "Add custom pages such as services, about us, or any other standard content page.",
-      price: 200,
-      multiple: true
-    },
-    {
-      id: "cmsintegration",
-      title: "Basic CMS Integration",
-      icon: "ri-edit-box-line",
-      isBuild: true,
-      description: "Update your own text and images anytime without needing a developer.",
-      price: 500,
-      multiple: false
-    },
-    {
-      id: "contactform",
-      title: "Basic Contact Form",
-      icon: "ri-mail-send-line",
-      isBuild: true,
-      description: "A professional contact form so visitors can email you directly. Includes spam protection. Requires a Resend account.",
-      price: 150,
-      multiple: false
-    },
-    {
-      id: "blog",
-      title: "Basic Blog",
-      icon: "ri-article-line",
-      isBuild: true,
-      description: "A blog system with a listing page, filtering, article pages, and social sharing. Requires CMS.",
-      price: 800,
-      multiple: false,
-      dependsOn: ["cmsintegration"]
-    },
-    {
-      id: "blogpage",
-      title: "Additional Blog Page",
-      icon: "ri-file-list-line",
-      isBuild: true,
-      description: "Extra blog-related pages such as author profiles, topic tags, or category listings.",
-      price: 150,
-      multiple: true,
-      dependsOn: ["cmsintegration", "blog"]
-    },
-    {
-      id: "legalpage",
-      title: "Legal Page",
-      icon: "ri-shield-check-line",
-      isBuild: true,
-      description: "A clean, professional page built for your legal documentation.",
-      price: 75,
-      multiple: true
-    },
-    {
-      id: "animations",
-      title: "Basic Animations",
-      icon: "ri-magic-line",
-      isBuild: true,
-      description: "Smooth scroll animations and transitions that make your site feel modern and engaging.",
-      price: 75,
-      multiple: false
-    },
-
-    // MAINTENANCE MODULES
-    {
-      id: "basemaintenance",
-      title: "Base Maintenance",
-      icon: "ri-tools-line",
-      isBuild: false,
-      description: "Peace of mind that your site stays online, secure, and up-to-date. Includes monitoring, security patches, performance checks, and small fixes.",
-      price: 125,
-      multiple: false
-    },
-    {
-      id: "cmsblogmanage",
-      title: "CMS/Blog Management",
-      icon: "ri-database-2-line",
-      isBuild: false,
-      description: "Code monitoring for CMS Integration and other CMS-powered add-ons.",
-      price: 50,
-      multiple: false,
-      dependsOn: ["basemaintenance"],
-      isDisabled: selectedModules["cmsintegration"] === false
-    },
-    {
-      id: "formmanage",
-      title: "Form Management",
-      icon: "ri-inbox-line",
-      isBuild: false,
-      description: "Code monitoring for the Basic Contact Form add-on.",
-      price: 25,
-      multiple: false,
-      dependsOn: ["basemaintenance"],
-      isDisabled: selectedModules["contactform"] === false
-    }
-  ];
-
-  const buildModules = pricingModules.filter(item => item.isBuild === true);
-  const maintenanceModules = pricingModules.filter(item => item.isBuild === false);
+  const buildModules = pricingData.modules?.filter(item => item.isBuild === true);
+  const maintenanceModules = pricingData.modules?.filter(item => item.isBuild === false);
 
   function calculateBuildTotal() {
     let total = 1000;
@@ -171,10 +71,10 @@ export default function Pricing() {
               </div>
               <p className="text-xs text-stone-500 mt-1.5 sm:ml-7">Everything you need to launch a solid website.</p>
             </div>
-            <span className="text-xl font-bold text-stone-900">$1,000</span>
+            <span className="text-xl font-bold text-stone-900">${pricingData.baseprice.toLocaleString()}</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mt-4 sm:ml-7">
-            {buildBase.map((item, index) => (
+            {pricingData.build.map((item, index) => (
               <div key={index} className="flex items-center gap-1.5">
                 <i className="ri-checkbox-circle-line text-sm text-amber-600"></i>
                 <span className="text-xs text-stone-600">{item}</span>
@@ -185,14 +85,14 @@ export default function Pricing() {
         <Modules
           title="Add-on Modules"
           modules={buildModules}
-          pricingModules={pricingModules}
+          pricingModules={pricingData.modules}
           selectedModules={selectedModules}
           setSelectedModules={setSelectedModules}
         />
         <Modules
           title="Monthly Maintenance"
           modules={maintenanceModules}
-          pricingModules={pricingModules}
+          pricingModules={pricingData.modules}
           selectedModules={selectedModules}
           setSelectedModules={setSelectedModules}
         />

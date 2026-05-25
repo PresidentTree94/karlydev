@@ -30,13 +30,14 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${playfairDisplay.variable} ${inter.variable} antialiased`}>
-      <body>
+      <body className="min-h-screen flex flex-col">
         <Navbar />
         {children}
         <footer className="bg-stone-100 text-xs text-stone-400 py-6">
           <div className="flex justify-between items-center">
             <p>&copy; {new Date().getFullYear()} karly.dev</p>
             <div className="flex gap-3">
+              <Link href="/faq" className="transition-colors hover:text-stone-700">FAQ</Link>
               <Link href="/privacy-policy" className="transition-colors hover:text-stone-700">Privacy</Link>
               <Link href="/accessibility" className="transition-colors hover:text-stone-700">Accessibility</Link>
             </div>

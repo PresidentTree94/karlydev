@@ -1,89 +1,8 @@
-import Pricing from '@/components/Pricing';
+import Link from "next/link";
+import { client } from "@/sanity/lib/client"
+import { homepageQuery } from "@/sanity/lib/queries";
+import PricingPage from "@/components/PricingPage";
 import Contact from '@/components/Contact';
-
-const services = [
-  {
-    title: "Design & Build",
-    description: "Every site is custom-built from scratch. No templates, no cookie-cutter layouts — just a fast, unique website that's perfect for you or your business.",
-    bg: "bg-amber-50",
-    box: "bg-amber-100",
-    icon: "ri-layout-4-line",
-    color: "text-amber-700"
-  },
-  {
-    title: "SEO & Accessibility",
-    description: "Your site is built to rank on Google and work well for every visitor — including people using screen readers or mobile devices.",
-    bg: "bg-stone-50",
-    box: "bg-stone-100",
-    icon: "ri-search-eye-line",
-    color: "text-stone-700"
-  },
-  {
-    title: "CMS Integration",
-    description: "Want to update your own text and images? I add an easy content editor so you can make changes anytime without calling a developer.",
-    bg: "bg-rose-50",
-    box: "bg-rose-100",
-    icon: "ri-edit-box-line",
-    color: "text-rose-700"
-  },
-  {
-    title: "Contact Forms",
-    description: "A professional contact form that actually works — with spam protection and reliable delivery so you never miss a lead.",
-    bg: "bg-teal-50",
-    box: "bg-teal-100",
-    icon: "ri-mail-send-line",
-    color: "text-teal-700"
-  },
-  {
-    title: "Blog Systems",
-    description: "A full blog setup to publish articles, share updates, and boost your search presence — all managed through the content editor.",
-    bg: "bg-violet-50",
-    box: "bg-violet-100",
-    icon: "ri-article-line",
-    color: "text-violet-700"
-  },
-  { 
-    title: "Scroll Animations",
-    description: "Subtle, purposeful scroll animations that make your site feel modern and engaging without being distracting.",
-    bg: "bg-orange-50",
-    box: "bg-orange-100",
-    icon: "ri-magic-line",
-    color: "text-orange-700"
-  }
-];
-
-const contracts = [
-  {
-    title: "Payment Terms",
-    description: "All projects use 50/50 payment terms — 50% paid upfront before work begins, and the remaining 50% due upon delivery. Payments are processed through Stripe.",
-    icon: "ri-money-dollar-circle-line"
-  },
-  {
-    title: "Third-Party Accounts",
-    description: "You create your own Vercel and related accounts. I am added as a collaborator to deploy your site and configure the content editor. You retain full ownership and admin access to both platforms at all times.",
-    icon: "ri-cloud-line"
-  },
-  {
-    title: "Revisions & Scope",
-    description: "Each project includes two rounds of revisions within the agreed scope. Additional changes or new features outside the original brief are quoted separately.",
-    icon: "ri-time-line"
-  },
-  {
-    title: "Maintenance",
-    description: "Optional monthly maintenance subscriptions cover hosting management, code updates, uptime monitoring, security updates, performance checks, and analytics reporting.",
-    icon: "ri-shield-check-line"
-  },
-  {
-    title: "Communication",
-    description: "All communication is handled by email. I aim to respond within 48 hours on business days. A project brief is shared before work begins to align on requirements.",
-    icon: "ri-customer-service-2-line"
-  },
-  {
-    title: "Cancellation",
-    description: "Either party may cancel before delivery. Work completed up to that point is billed proportionally. The upfront deposit is non-refundable once development begins. A written notice by email is all that's required.",
-    icon: "ri-close-circle-line"
-  }
-];
 
 const contacts = [
   { title: "Email", text: "karlysams1218@gmail.com", icon: "ri-mail-line" },
@@ -91,7 +10,10 @@ const contacts = [
   { title: "Availability", text: "Remote-only in the US", icon: "ri-global-line" }
 ];
 
-export default function Home() {
+export default async function Home() {
+
+  const heroData = await client.fetch(homepageQuery);
+
   return (
     <main>
       {/* Hero Section */}
@@ -103,13 +25,13 @@ export default function Home() {
         </div>
         <div className="relative max-w-6xl text-center p-6 flex flex-col items-center my-16">
           <div className="flex items-center gap-2 uppercase text-stone-600 bg-white border border-stone-200 px-4 py-2 rounded-full tracking-widest text-xs font-semibold">
-            <span className="w-2 h-2 bg-green-400 rounded-full inline-block animate-pulse"></span>
-            Available for new projects
+            <span className={`w-2 h-2 ${heroData.availability ? "bg-green-400" : "bg-red-400"} rounded-full inline-block animate-pulse`}></span>
+            {heroData.availability ? "Available" : "Unavailable"} for new projects
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl text-stone-900 mt-10 mb-8">Websites built right, <span className="italic text-amber-500 block">priced fairly.</span></h1>
-          <p className="text-stone-500 text-lg md:text-xl max-w-2xl">Freelance junior web developer crafting clean, fast, accessible sites for small businesses and creatives. Start with a base, add only what you need.</p>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl text-stone-900 mt-10 mb-8">{heroData.headingMain} <span className="italic text-amber-500 block">{heroData.headingAccent}</span></h1>
+          <p className="text-stone-500 text-lg md:text-xl max-w-2xl">{heroData.subheading}</p>
           <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 text-sm">
-            <a href="#" className="bg-stone-900 text-white font-semibold px-8 py-4 rounded-full transition-colors hover:bg-stone-700">View My Work</a>
+            <a href="#work" className="bg-stone-900 text-white font-semibold px-8 py-4 rounded-full transition-colors hover:bg-stone-700">View My Work</a>
             <a href="#pricing" className="bg-white border border-stone-300 text-stone-700 font-semibold px-8 py-4 rounded-full transition-colors hover:border-stone-500 hover:text-stone-900">Build Your Quote</a>
             <a href="#contact" className="text-stone-500 font-medium underline underline-offset-4 transition-colors hover:text-stone-800">Let's talk <i className="ri-arrow-right-line"></i></a>
           </div>
@@ -124,10 +46,10 @@ export default function Home() {
             <p className="text-stone-500 mt-4">I work with a base package + optional modules so you only pay for what your project actually needs. Everything ships responsive, accessible, and optimized.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map((service, index) => (
-              <div key={index} className={`rounded-2xl p-7 ${service.bg} text-center sm:text-left`}>
-                <div className={`w-10 h-10 ${service.box} rounded-xl flex justify-center items-center mx-auto sm:mx-0`}>
-                  <i className={`${service.icon} ${service.color} text-xl`}></i>
+            {heroData.services.map((service: any, index: number) => (
+              <div key={index} className={`rounded-2xl p-7 ${service.boxBackground} text-center sm:text-left`}>
+                <div className={`w-10 h-10 ${service.iconBackground} rounded-xl flex justify-center items-center mx-auto sm:mx-0`}>
+                  <i className={`${service.icon} ${service.iconColor} text-xl`}></i>
                 </div>
                 <h3 className="font-semibold text-stone-900 mt-4 mb-1.5">{service.title}</h3>
                 <p className="text-sm text-stone-500">{service.description}</p>
@@ -174,7 +96,7 @@ export default function Home() {
             <h2>Build your quote.</h2>
             <p className="text-stone-500 mt-4">Start with the base package, then add only the modules your project needs. No surprises, no hidden fees.</p>
           </div>
-          <Pricing />
+          <PricingPage />
         </div>
       </section>
       {/* Contract Section */}
@@ -188,7 +110,7 @@ export default function Home() {
             <p className="lg:text-right text-stone-500 text-sm max-w-sm">I keep things simple and transparent. Here's what to expect when we work together.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-sm">
-            {contracts.map((contract, index) => (
+            {heroData.terms?.map((contract: any, index: number) => (
               <div key={index} className="bg-white rounded-2xl p-6 text-center sm:text-left">
                 <div className="w-10 h-10 bg-stone-100 rounded-xl flex justify-center items-center mx-auto sm:mx-0">
                   <i className={`${contract.icon} text-stone-600 text-xl`}></i>
@@ -198,13 +120,13 @@ export default function Home() {
               </div>
             ))}
           </div>
-          {/*<div className="bg-stone-900 rounded-2xl p-8 flex flex-col sm:flex-row items-center text-center sm:text-left gap-6 mt-12">
+          <div className="bg-stone-900 rounded-2xl p-8 flex flex-col sm:flex-row items-center text-center sm:text-left gap-6 mt-12">
             <div className="flex-1">
-              <h3 className="text-2xl font-bold text-white font-display">Want the full contract?</h3>
-              <p className="text-sm text-stone-400 mt-2">A detailed contract is sent before any project begins. It covers IP, revisions, timelines, and cancellation policies.</p>
+              <h3 className="text-2xl font-bold text-white font-display">Got questions?</h3>
+              <p className="text-sm text-stone-400 mt-2">I cover everything from how Vercel works, to ownership, accounts, timelines, and what happens after launch.</p>
             </div>
-            <a href="#contact" className="bg-amber-400 text-stone-900 text-sm font-bold px-7 py-3.5 rounded-xl transition-colors hover:bg-amber-300">Request Contract Draft</a>
-          </div>*/}
+            <Link href="/faq" className="bg-amber-400 text-stone-900 text-sm font-bold px-7 py-3.5 rounded-xl transition-colors hover:bg-amber-300">Read the FAQ</Link>
+          </div>
         </div>
       </section>
       {/* Contact Section */}

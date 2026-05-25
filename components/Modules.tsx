@@ -37,9 +37,10 @@ export default function Modules({ title, modules, pricingModules, selectedModule
       <h3 className="text-sm font-bold text-stone-800 uppercase tracking-widest mb-4">{title}</h3>
       <div className="space-y-3">
         {modules.map((module: any) => {
-          const isSelected = module.multiple ? (selectedModules[module.id] as number) > 0 : (selectedModules[module.id] as boolean);
+          const isSelected = Boolean(selectedModules[module.id]);
+          const isDisabled = module.disabledBy && !Boolean(selectedModules[module.disabledBy]);
           return (
-            <button key={module.id} className={`grid grid-cols-1 sm:grid-cols-[auto_auto_1fr_auto] justify-items-center sm:justify-items-start items-center gap-4 p-4 rounded-xl border border-stone-200 w-full text-center sm:text-left ${module.isDisabled ? "bg-stone-50 opacity-50" : "cursor-pointer"} ${isSelected ? "border-stone-900 bg-stone-50" : "border-stone-200 transition-colors hover:border-stone-300"}`} disabled={module.isDisabled} onClick={() => toggleModule(module)}>
+            <button key={module.id} className={`grid grid-cols-1 sm:grid-cols-[auto_auto_1fr_auto] justify-items-center sm:justify-items-start items-center gap-4 p-4 rounded-xl border border-stone-200 w-full text-center sm:text-left ${isDisabled ? "bg-stone-50 opacity-50" : "cursor-pointer"} ${isSelected ? "border-stone-900 bg-stone-50" : "border-stone-200 transition-colors hover:border-stone-300"}`} disabled={isDisabled} onClick={() => toggleModule(module)}>
               <div className={`w-5 h-5 border-2 rounded ${isSelected ? "border-stone-900 bg-stone-900" : "border-stone-300 bg-transparent"} flex justify-center items-center`}>
                 <i className="ri-check-line text-xs text-white"></i>
               </div>
