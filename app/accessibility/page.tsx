@@ -1,5 +1,18 @@
-export default function Accessibility() {
+import { client } from "@/sanity/lib/client"
+import { legalQuery } from "@/sanity/lib/queries";
+import Page from "@/components/Page";
+
+export const metadata = {
+  alternates: {
+    canonical: "https://karlydev.vercel.app/accessibility",
+  }
+};
+
+export default async function Accessibility() {
+
+  const accessibilityData = await client.fetch(legalQuery, { slug: "accessibility" })
+
   return (
-    <div>TEST</div>
+    <Page subtitle="Commitment" legalData={accessibilityData} />
   );
 }

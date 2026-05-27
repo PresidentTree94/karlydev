@@ -46,3 +46,15 @@ export const faqQuery = `
     }
   }
 `;
+
+export const legalQuery = `
+  *[_type == "legalpage" && slug.current == $slug][0]{
+    title,
+    slug,
+    updatedAt,
+    items[]{
+      title,
+      text
+    }
+  }
+`

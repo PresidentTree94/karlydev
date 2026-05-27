@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: "Junior freelance web developer",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -33,12 +33,13 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <Navbar />
         {children}
-        <footer className="bg-stone-100 text-xs text-stone-400 py-6">
-          <div className="flex justify-between items-center">
+        <footer className="bg-stone-100 text-xs text-stone-400 py-6 border-t border-stone-200">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
             <p>&copy; {new Date().getFullYear()} karly.dev</p>
-            <div className="flex gap-3">
+            <div className="flex justify-center flex-wrap gap-6">
               <Link href="/faq" className="transition-colors hover:text-stone-700">FAQ</Link>
-              <Link href="/privacy-policy" className="transition-colors hover:text-stone-700">Privacy</Link>
+              <Link href="/privacy-policy" className="transition-colors hover:text-stone-700">Privacy Policy</Link>
+              <Link href="/terms-of-service" className="transition-colors hover:text-stone-700">Terms of Service</Link>
               <Link href="/accessibility" className="transition-colors hover:text-stone-700">Accessibility</Link>
             </div>
           </div>

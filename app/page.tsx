@@ -4,6 +4,12 @@ import { homepageQuery } from "@/sanity/lib/queries";
 import PricingPage from "@/components/PricingPage";
 import Contact from '@/components/Contact';
 
+export const metadata = {
+  alternates: {
+    canonical: "https://karlydev.vercel.app",
+  }
+};
+
 const contacts = [
   { title: "Email", text: "karlysams1218@gmail.com", icon: "ri-mail-line" },
   { title: "Response time", text: "Within 48 hours (business days)", icon: "ri-time-line" },

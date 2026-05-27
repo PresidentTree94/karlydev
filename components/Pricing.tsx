@@ -37,7 +37,7 @@ export default function Pricing({ pricingData }: { pricingData: Price; }) {
   const maintenanceModules = pricingData.modules?.filter(item => item.isBuild === false);
 
   function calculateBuildTotal() {
-    let total = 1000;
+    let total = pricingData.baseprice;
 
     buildModules.forEach(module => {
       total += module.price * (selectedModules[module.id] as number);
@@ -102,7 +102,7 @@ export default function Pricing({ pricingData }: { pricingData: Price; }) {
           <h3 className="text-sm font-bold uppercase tracking-widest text-stone-300">Your estimate</h3>
           <div className="grid grid-cols-[1fr_auto] gap-3 text-sm">
             <span className="text-stone-400">Base package</span>
-            <span className="text-white font-semibold text-right">$1,000</span>
+            <span className="text-white font-semibold text-right">${pricingData.baseprice.toLocaleString()}</span>
             {buildModules.map((module) => (
               Boolean(selectedModules[module.id]) &&
                 <React.Fragment key={module.id}>
