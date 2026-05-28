@@ -3,6 +3,8 @@ import { faqQuery } from "@/sanity/lib/queries"
 import FAQ from "./FAQ";
 
 export const metadata = {
+  title: "karly.dev - FAQ",
+  description: "Answers to common questions about my work, process, and services.",
   alternates: {
     canonical: "https://karlydev.vercel.app/faq",
   }

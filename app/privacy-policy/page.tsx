@@ -3,6 +3,7 @@ import { legalQuery } from "@/sanity/lib/queries";
 import Page from "@/components/Page";
 
 export const metadata = {
+  title: "karly.dev - Privacy Policy",
   alternates: {
     canonical: "https://karlydev.vercel.app/privacy-policy",
   }

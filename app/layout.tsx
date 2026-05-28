@@ -19,10 +19,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "karly.dev",
-  description: "Junior freelance web developer",
+  description: "Junior freelance web developer, building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

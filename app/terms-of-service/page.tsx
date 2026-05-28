@@ -3,6 +3,7 @@ import { legalQuery } from "@/sanity/lib/queries";
 import Page from "@/components/Page";
 
 export const metadata = {
+  title: "karly.dev - Terms of Service",
   alternates: {
     canonical: "https://karlydev.vercel.app/terms-of-service",
   }
