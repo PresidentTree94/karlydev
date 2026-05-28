@@ -4,6 +4,7 @@ import Page from "@/components/Page";
 
 export const metadata = {
   title: "karly.dev - Privacy Policy",
+  description: "karly.dev's privacy policy.",
   alternates: {
     canonical: "https://karlydev.vercel.app/privacy-policy",
   }

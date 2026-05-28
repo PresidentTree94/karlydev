@@ -4,6 +4,7 @@ import Page from "@/components/Page";
 
 export const metadata = {
   title: "karly.dev - Accessibility Statement",
+  description: "karly.dev's accessibility statement.",
   alternates: {
     canonical: "https://karlydev.vercel.app/accessibility",
   }
