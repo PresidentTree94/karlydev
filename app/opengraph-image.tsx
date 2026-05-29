@@ -24,7 +24,6 @@ export default async function OG() {
         right: 0,
         bottom: 0,
         left: 0,
-        pointerEvents: "none"
       }}>
           <div style={{
             position: "absolute",
