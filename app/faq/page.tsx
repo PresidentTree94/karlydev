@@ -4,9 +4,14 @@ import FAQ from "./FAQ";
 
 export const metadata = {
   title: "karly.dev - FAQ",
-  description: "Answers to common questions about my work, process, and services.",
+  description: "Answers to common questions about work, process, and services on karly.dev.",
   alternates: {
     canonical: "https://karlydev.vercel.app/faq",
+  },
+  openGraph: {
+    title: "karly.dev - FAQ",
+    description: "Answers to common questions about work, process, and services on karly.dev.",
+    url: "https://karlydev.vercel.app/faq",
   }
 };
 

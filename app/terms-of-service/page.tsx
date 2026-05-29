@@ -7,6 +7,11 @@ export const metadata = {
   description: "karly.dev's terms of service.",
   alternates: {
     canonical: "https://karlydev.vercel.app/terms-of-service",
+  },
+  openGraph: {
+    title: "karly.dev - Terms of Service",
+    description: "karly.dev's terms of service.",
+    url: "https://karlydev.vercel.app/terms-of-service"
   }
 };
 

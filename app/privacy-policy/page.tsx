@@ -7,6 +7,11 @@ export const metadata = {
   description: "karly.dev's privacy policy.",
   alternates: {
     canonical: "https://karlydev.vercel.app/privacy-policy",
+  },
+  openGraph: {
+    title: "karly.dev - Privacy Policy",
+    description: "karly.dev's privacy policy.",
+    url: "https://karlydev.vercel.app/privacy-policy"
   }
 };
 

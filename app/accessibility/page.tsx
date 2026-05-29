@@ -7,6 +7,11 @@ export const metadata = {
   description: "karly.dev's accessibility statement.",
   alternates: {
     canonical: "https://karlydev.vercel.app/accessibility",
+  },
+  openGraph: {
+    title: "karly.dev - Accessibility Statement",
+    description: "karly.dev's accessibility statement.",
+    url: "https://karlydev.vercel.app/accessibility"
   }
 };
 

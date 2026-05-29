@@ -19,8 +19,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "karly.dev",
-  description: "Junior freelance web developer, building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.",
+  title: "karly.dev - Freelance Junior Web Developer",
+  description: "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.",
+  alternates: {
+    canonical: "https://karlydev.vercel.app",
+  },
+  openGraph: {
+    title: "karly.dev - Freelance Junior Web Developer",
+    description: "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.",
+    url: "https://karlydev.vercel.app",
+    images: ["/opengraph-image.png"],
+    type: "website",
+    locale: "en-US"
+  }
 };
 
 export default function RootLayout({
