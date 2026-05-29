@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export default async function OG() {
-  const playfair = await fetch(new URL("../../public/PlayfairDisplay-Bold.ttf", import.meta.url)).then(res => res.arrayBuffer());
+  const playfair = await fetch(new URL("./PlayfairDisplay-Bold.ttf", import.meta.url)).then(res => res.arrayBuffer());
   return new ImageResponse(
     <div style={{
       width: "100%",
