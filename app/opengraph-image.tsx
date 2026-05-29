@@ -18,6 +18,43 @@ export default async function OG() {
       fontFamily: "Playfair",
       position: "relative"
     }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          overflow: "hidden",
+      }}>
+        <div
+          style={{
+            position: "absolute",
+            top: "-200px",
+            right: "-200px",
+            width: "700px",
+            height: "700px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(254, 243, 198, 0.6)", // amber-100/60
+        }}></div>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-240px",
+            left: "-240px",
+            width: "600px",
+            height: "600px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(231, 229, 228, 0.5)", // stone-200/50
+        }}></div>
+        <div
+          style={{
+            position: "absolute",
+            top: "100px",
+            left: "150px",
+            width: "900px",
+            height: "900px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(255, 251, 235, 0.4)", // amber-50/40
+        }}></div>
+      </div>
       <span style={{ color: "#292524" }}>karly</span>
       <span style={{ color: "#fd9a00" }}>.dev</span>
     </div>,
