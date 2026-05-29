@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
@@ -45,6 +46,7 @@ export default function RootLayout({
           </div>
         </footer>
         <Toaster position="bottom-center" />
+        <Analytics />
       </body>
     </html>
   );

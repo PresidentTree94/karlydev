@@ -5,6 +5,8 @@ import PricingPage from "@/components/PricingPage";
 import Contact from '@/components/Contact';
 
 export const metadata = {
+  title: "karly.dev",
+  description: "Junior freelance web developer, building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.",
   alternates: {
     canonical: "https://karlydev.vercel.app",
   }
