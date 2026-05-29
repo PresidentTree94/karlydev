@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import Page from "@/components/Page";
 import Accordian from "@/components/Accordian";
 
 export default function FAQ({ faqData }: { faqData: { faqs: { question: string; answer: string; }[] }; }) {

@@ -1,4 +1,3 @@
-import React from "react";
 import { PortableText } from "next-sanity";
 
 type Legal = {
