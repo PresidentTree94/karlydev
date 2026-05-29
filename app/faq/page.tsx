@@ -2,16 +2,24 @@ import { client } from "@/sanity/lib/client"
 import { faqQuery } from "@/sanity/lib/queries"
 import FAQ from "./FAQ";
 
+const websiteTitle = "karly.dev - FAQ";
+const websiteDescription = "Answers to common questions about work, process, and services on karly.dev.";
+const websiteURL = "https://karlydev.vercel.app/faq";
+
 export const metadata = {
-  title: "karly.dev - FAQ",
-  description: "Answers to common questions about work, process, and services on karly.dev.",
+  title: websiteTitle,
+  description: websiteDescription,
   alternates: {
-    canonical: "https://karlydev.vercel.app/faq",
+    canonical: websiteURL,
   },
   openGraph: {
-    title: "karly.dev - FAQ",
-    description: "Answers to common questions about work, process, and services on karly.dev.",
-    url: "https://karlydev.vercel.app/faq",
+    title: websiteTitle,
+    description: websiteDescription,
+    url: websiteURL
+  },
+  twitter: {
+    title: websiteTitle,
+    description: websiteDescription,
   }
 };
 

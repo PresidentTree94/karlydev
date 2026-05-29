@@ -18,19 +18,29 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const websiteTitle = "karly.dev - Freelance Junior Web Developer";
+const websiteDescription = "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.";
+const websiteURL = "https://karlydev.vercel.app";
+
 export const metadata: Metadata = {
-  title: "karly.dev - Freelance Junior Web Developer",
-  description: "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.",
+  title: websiteTitle,
+  description: websiteDescription,
   alternates: {
-    canonical: "https://karlydev.vercel.app",
+    canonical: websiteURL,
   },
   openGraph: {
-    title: "karly.dev - Freelance Junior Web Developer",
-    description: "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.",
-    url: "https://karlydev.vercel.app",
+    title: websiteTitle,
+    description: websiteDescription,
+    url: websiteURL,
     images: ["/opengraph-image.png"],
     type: "website",
     locale: "en-US"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: websiteTitle,
+    description: websiteDescription,
+    images: ["/opengraph-image.png"]
   }
 };
 

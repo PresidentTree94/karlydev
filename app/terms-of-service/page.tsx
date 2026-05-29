@@ -2,16 +2,24 @@ import { client } from "@/sanity/lib/client"
 import { legalQuery } from "@/sanity/lib/queries";
 import Page from "@/components/Page";
 
+const websiteTitle = "karly.dev - Terms of Service";
+const websiteDescription = "karly.dev's terms of service.";
+const websiteURL = "https://karlydev.vercel.app/terms-of-service";
+
 export const metadata = {
-  title: "karly.dev - Terms of Service",
-  description: "karly.dev's terms of service.",
+  title: websiteTitle,
+  description: websiteDescription,
   alternates: {
-    canonical: "https://karlydev.vercel.app/terms-of-service",
+    canonical: websiteURL,
   },
   openGraph: {
-    title: "karly.dev - Terms of Service",
-    description: "karly.dev's terms of service.",
-    url: "https://karlydev.vercel.app/terms-of-service"
+    title: websiteTitle,
+    description: websiteDescription,
+    url: websiteURL
+  },
+  twitter: {
+    title: websiteTitle,
+    description: websiteDescription,
   }
 };
 
