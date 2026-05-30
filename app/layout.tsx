@@ -51,24 +51,53 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" className={`${playfairDisplay.variable} ${inter.variable} antialiased`}>
-      <body className="min-h-screen flex flex-col">
-        <Navbar />
-        {children}
-        <footer className="bg-stone-100 text-xs text-stone-400 py-6 border-t border-stone-200">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-            <p>&copy; {new Date().getFullYear()} karly.dev</p>
-            <div className="flex justify-center flex-wrap gap-6">
-              <Link href="/faq" className="transition-colors hover:text-stone-700">FAQ</Link>
-              <Link href="/privacy-policy" className="transition-colors hover:text-stone-700">Privacy Policy</Link>
-              <Link href="/terms-of-service" className="transition-colors hover:text-stone-700">Terms of Service</Link>
-              <Link href="/accessibility" className="transition-colors hover:text-stone-700">Accessibility</Link>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Karly Sams",
+            "jobTitle": "Freelance Junior Web Developer",
+            "url": "https://karlydev.vercel.app",
+            "sameAs": [
+              "https://github.com/PresidentTree94"
+            ]
+          }).replace(/</g, "\\u003c")
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://karlydev.vercel.app",
+            "name": "karly.dev - Freelance Junior Web Developer",
+            "description": "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons."
+          }).replace(/</g, "\\u003c")
+        }}
+      />
+      <html lang="en" className={`${playfairDisplay.variable} ${inter.variable} antialiased`}>
+        <body className="min-h-screen flex flex-col">
+          <Navbar />
+          {children}
+          <footer className="bg-stone-100 text-xs text-stone-400 py-6 border-t border-stone-200">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
+              <p>&copy; {new Date().getFullYear()} karly.dev</p>
+              <div className="flex justify-center flex-wrap gap-6">
+                <Link href="/faq" className="transition-colors hover:text-stone-700">FAQ</Link>
+                <Link href="/privacy-policy" className="transition-colors hover:text-stone-700">Privacy Policy</Link>
+                <Link href="/terms-of-service" className="transition-colors hover:text-stone-700">Terms of Service</Link>
+                <Link href="/accessibility" className="transition-colors hover:text-stone-700">Accessibility</Link>
+              </div>
             </div>
-          </div>
-        </footer>
-        <Toaster position="bottom-center" />
-        <Analytics />
-      </body>
-    </html>
+          </footer>
+          <Toaster position="bottom-center" />
+          <Analytics />
+        </body>
+      </html>
+    </>
   );
 }
