@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "react-hot-toast";
+import { useCronitor } from '@cronitorio/cronitor-rum-nextjs';
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import "./globals.css";
@@ -49,6 +50,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  useCronitor("b5427afcc743eb6edef261b3933ad165");
 
   return (
     <>
