@@ -14,6 +14,7 @@ export async function GET() {
     sanityHealthy = true;
   } catch (error) {
     console.error("Sanity health check failed: ", error);
+    sanityHealthy = false;
   }
 
   try {
@@ -21,6 +22,7 @@ export async function GET() {
     resendHealthy = true;
   } catch (error) {
     console.error("Resend health check failed: ", error);
+    resendHealthy = false;
   }
 
   const isHealthy = sanityHealthy && resendHealthy;
