@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
@@ -53,35 +54,39 @@ export default function RootLayout({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Karly Sams",
-            "jobTitle": "Freelance Junior Web Developer",
-            "url": "https://karlydev.vercel.app",
-            "sameAs": [
-              "https://github.com/PresidentTree94"
-            ]
-          }).replace(/</g, "\\u003c")
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "https://karlydev.vercel.app",
-            "name": "karly.dev - Freelance Junior Web Developer",
-            "description": "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons."
-          }).replace(/</g, "\\u003c")
-        }}
-      />
-      <CronitorClient />
+      <Suspense>
+        <CronitorClient />
+      </Suspense>
       <html lang="en" className={`${playfairDisplay.variable} ${inter.variable} antialiased`}>
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Karly Sams",
+                "jobTitle": "Freelance Junior Web Developer",
+                "url": "https://karlydev.vercel.app",
+                "sameAs": [
+                  "https://github.com/PresidentTree94"
+                ]
+              }).replace(/</g, "\\u003c")
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "url": "https://karlydev.vercel.app",
+                "name": "karly.dev - Freelance Junior Web Developer",
+                "description": "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons."
+              }).replace(/</g, "\\u003c")
+            }}
+          />
+        </head>
         <body className="min-h-screen flex flex-col">
           <Navbar />
           {children}

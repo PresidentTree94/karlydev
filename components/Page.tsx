@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { PortableText } from "next-sanity";
 
 type Legal = {
@@ -13,18 +14,20 @@ type Legal = {
 export default function Page({ subtitle, legalData }: { subtitle: string, legalData: Legal; }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "url": `https://karlydev.vercel.app/${legalData.slug}`,
-            "name": legalData.title,
-            "description": `${legalData.title} for karly.dev's freelance junior web development services.`
-          }).replace(/</g, "\\u003c")
-        }}
-      />
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "url": `https://karlydev.vercel.app/${legalData.slug}`,
+              "name": legalData.title,
+              "description": `${legalData.title} for karly.dev's freelance junior web development services.`
+            }).replace(/</g, "\\u003c")
+          }}
+        />
+      </Head>
       <main className="bg-background">
         <div className="max-w-3xl mx-auto px-6 pt-28">
           <p className="subtitle">{subtitle}</p>

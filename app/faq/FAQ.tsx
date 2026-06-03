@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Head from "next/head";
 import Link from "next/link";
 import Accordian from "@/components/Accordian";
 
@@ -13,23 +14,25 @@ export default function FAQ({ faqData }: { faqData: { faqs: { question: string; 
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": faqData.faqs.map(faq => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          }).replace(/</g, "\\u003c")
-        }}
-      />
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": faqData.faqs.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer
+                }
+              }))
+            }).replace(/</g, "\\u003c")
+          }}
+        />
+      </Head>
       <main className="bg-background">
         <div className="max-w-3xl mx-auto px-6 pt-28">
           <p className="subtitle">Questions & answers</p>
