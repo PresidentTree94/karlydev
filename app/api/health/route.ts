@@ -20,7 +20,7 @@ export async function GET() {
   try {
     const resendResponse = await resend.domains.list();
 
-    if (!resendResponse || !resendResponse.data) {
+    if (!resendResponse || !Array.isArray(resendResponse.data)) {
       throw new Error("Invalid response from Resend API");
     }
 
