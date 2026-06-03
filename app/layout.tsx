@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
-import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
-import CronitorClient from "./CronitorClient";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 
@@ -54,9 +52,6 @@ export default function RootLayout({
 
   return (
     <>
-      <Suspense>
-        <CronitorClient />
-      </Suspense>
       <html lang="en" className={`${playfairDisplay.variable} ${inter.variable} antialiased`}>
         <head>
           <script
