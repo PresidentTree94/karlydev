@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "react-hot-toast";
-import { useCronitor } from '@cronitorio/cronitor-rum-nextjs';
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import CronitorClient from "./CronitorClient";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 
@@ -51,8 +51,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  useCronitor("b5427afcc743eb6edef261b3933ad165");
-
   return (
     <>
       <script
@@ -82,6 +80,7 @@ export default function RootLayout({
           }).replace(/</g, "\\u003c")
         }}
       />
+      <CronitorClient />
       <html lang="en" className={`${playfairDisplay.variable} ${inter.variable} antialiased`}>
         <body className="min-h-screen flex flex-col">
           <Navbar />
