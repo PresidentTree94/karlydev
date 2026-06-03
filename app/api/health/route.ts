@@ -17,7 +17,7 @@ export async function GET() {
   }
 
   try {
-    await resend.emails.list({ limit: 1 });
+    await resend.domains.list();
     resendHealthy = true;
   } catch (error) {
     console.error("Resend health check failed: ", error);
