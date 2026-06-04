@@ -1,11 +1,16 @@
 import { client } from "@/sanity/lib/client"
 import { homepageQuery } from "@/sanity/lib/queries";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const authHeader = req.headers.get("Authorization");
+  if (authHeader !== `Bearer ${process.env.HEALTH_CHECK_SECRET}`) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   let sanityHealthy = false;
   let resendHealthy = false;
 
@@ -18,28 +23,6 @@ export async function GET() {
   }
 
   try {
-    const response = await fetch ("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
-        "User-Agent": "my-cronitor-monitor/1.0",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({})
-    });
-
-    if (response.status === 400) {
-      resendHealthy = true;
-    } else {
-      console.error("Resend health check failed: ", response.status);
-      resendHealthy = false;
-    }
-  } catch (error) {
-    console.error("Resend health check failed: ", error);
-    resendHealthy = false;
-  }
-
-  /*try {
     const response = await resend.domains.list();
     if (response.error) {
       console.error("Resend health check failed:", response.error);
@@ -50,7 +33,7 @@ export async function GET() {
   } catch (error) {
     console.error("Resend health check failed: ", error);
     resendHealthy = false;
-  }*/
+  }
 
   const isHealthy = sanityHealthy && resendHealthy;
 
