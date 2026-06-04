@@ -18,13 +18,14 @@ export async function GET() {
   }
 
   try {
-    const resendResponse = await resend.domains.list();
+    const response = await resend.domains.list();
 
-    if (!resendResponse) {
-      throw new Error("No response from Resend API");
+    if (response.error) {
+      console.error("Resend health check failed: ", response.error);
+      resendHealthy = false;
+    } else {
+      resendHealthy = true;
     }
-
-    resendHealthy = true;
   } catch (error) {
     console.error("Resend health check failed: ", error);
     resendHealthy = false;
