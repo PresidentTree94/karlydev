@@ -18,20 +18,16 @@ export async function GET() {
   }
 
   try {
-    const response = await resend.emails.get("00000000-0000-0000-0000-000000000000");
-    if (response.error) {
-      if (response.error.name === "not_found") {
-        resendHealthy = true;
-      } else {
-        console.error("Resend health check failed:", response.error);
-        resendHealthy = false;
-      }
-    } else {
+    await resend.domains.list();
+    resendHealthy = true;
+  } catch (error: any) {
+    const errorMessage = error?.message || "";
+    if (errorMessage.includes("restricted_api_key")) {
       resendHealthy = true;
+    } else {
+      console.error("Resend health check failed: ", errorMessage);
+      resendHealthy = false;
     }
-  } catch (error) {
-    console.error("Resend health check failed: ", error);
-    resendHealthy = false;
   }
 
   /*try {
