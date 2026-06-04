@@ -18,6 +18,23 @@ export async function GET() {
   }
 
   try {
+    const response = await resend.emails.get("00000000-0000-0000-0000-000000000000");
+    if (response.error) {
+      if (response.error.name === "not_found") {
+        resendHealthy = true;
+      } else {
+        console.error("Resend health check failed:", response.error);
+        resendHealthy = false;
+      }
+    } else {
+      resendHealthy = true;
+    }
+  } catch (error) {
+    console.error("Resend health check failed: ", error);
+    resendHealthy = false;
+  }
+
+  /*try {
     const response = await resend.domains.list();
     if (response.error) {
       console.error("Resend health check failed:", response.error);
@@ -28,7 +45,7 @@ export async function GET() {
   } catch (error) {
     console.error("Resend health check failed: ", error);
     resendHealthy = false;
-  }
+  }*/
 
   const isHealthy = sanityHealthy && resendHealthy;
 
