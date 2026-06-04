@@ -18,12 +18,14 @@ export async function GET() {
   }
 
   try {
-    const response = await resend.emails.get("health-check-ping");
-    if (response.error && response.error.name === "not_found") {
-      resendHealthy = true;
-    } else {
-      console.error("Resend health check failed: ", response.error);
+    const response = await fetch("https://api.resend.com/domains", {
+      headers: { "Authorization": `Bearer ${process.env.RESEND_API_KEY}` }
+    });
+
+    if (response.status >= 500) {
       resendHealthy = false;
+    } else {
+      resendHealthy = true;
     }
   } catch (error) {
     console.error("Resend health check failed: ", error);
