@@ -20,11 +20,11 @@ export async function GET() {
   try {
     const response = await resend.domains.list();
 
-    if (response.error) {
-      console.error("Resend health check failed: ", response.error);
-      resendHealthy = false;
-    } else {
+    if (response.data && !response.error) {
       resendHealthy = true;
+    } else {
+      console.error("Resend validation failed: ", response.error);
+      resendHealthy = false;
     }
   } catch (error) {
     console.error("Resend health check failed: ", error);
