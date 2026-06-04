@@ -18,16 +18,24 @@ export async function GET() {
   }
 
   try {
-    await resend.domains.list();
-    resendHealthy = true;
-  } catch (error: any) {
-    const errorMessage = error?.message || "";
-    if (errorMessage.includes("restricted_api_key")) {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({}),
+    });
+
+    if (response.status === 400) {
       resendHealthy = true;
     } else {
-      console.error("Resend health check failed: ", errorMessage);
+      console.error("Resend health check failed: ", response.status);
       resendHealthy = false;
     }
+  } catch (error) {
+    console.error("Resend health check failed: ", error);
+    resendHealthy = false;
   }
 
   /*try {
