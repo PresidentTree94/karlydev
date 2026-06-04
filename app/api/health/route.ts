@@ -18,15 +18,17 @@ export async function GET() {
   }
 
   try {
-    const response = await fetch ("https://api.resend.com/emails?limit=1", {
-      method: "GET",
+    const response = await fetch ("https://api.resend.com/emails", {
+      method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
-        "User-Agent": "my-cronitor-monitor/1.0"
-      }
+        "User-Agent": "my-cronitor-monitor/1.0",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({})
     });
 
-    if (response.status === 200) {
+    if (response.status === 400) {
       resendHealthy = true;
     } else {
       console.error("Resend health check failed: ", response.status);
