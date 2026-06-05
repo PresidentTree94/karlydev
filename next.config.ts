@@ -2,11 +2,11 @@ import type { NextConfig } from "next";
 
 const csp = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' vercel.live https://va.vercel-scripts.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' vercel.live https://va.vercel-scripts.com https://cdn.sanity.io;
   style-src 'self' 'unsafe-inline';
-  img-src 'self' data: blob: cdn.sanity.io https://vitals.vercel-insights.com;
+  img-src 'self' data: blob: https://cdn.sanity.io https://avatars.githubusercontent.com https://vitals.vercel-insights.com;
   font-src 'self';
-  connect-src 'self' https://*.sanity.io https://api.resend.com https://vitals.vercel-insights.com;
+  connect-src 'self' https://*.api.sanity.io https://cdn.sanity.io https://api.resend.com https://vitals.vercel-insights.com;
   frame-ancestors 'none';
   base-uri 'self';
   form-action 'self';
