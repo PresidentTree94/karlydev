@@ -46,6 +46,10 @@ export default function Contact() {
         <label htmlFor="subject">Subject</label>
         <input type="text" id="subject" name="subject" placeholder="What is this about?" required />
       </div>
+      <div aria-hidden="true" className="absolute -left-[9999px] -top-[9999px] w-0 h-0 overflow-hidden">
+        <label htmlFor="budget">Budget Range</label>
+        <input type="text" id="budget" name="budget" tabIndex={-1} autoComplete="off" />
+      </div>
       <div>
         <label htmlFor="message">Tell me about your project</label>
         <textarea id="message" name="message" placeholder="What are you building? What's the goal?" rows={5} maxLength={500} className="resize-none" onChange={(e) => setCharCount(e.target.value.length)} required></textarea>
