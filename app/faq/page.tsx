@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { client } from "@/sanity/lib/client"
 import { faqQuery } from "@/sanity/lib/queries"
 import FAQ from "./FAQ";

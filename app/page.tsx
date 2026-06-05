@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import Link from "next/link";
 import { client } from "@/sanity/lib/client"
 import { homepageQuery } from "@/sanity/lib/queries";
