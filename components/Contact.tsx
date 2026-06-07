@@ -59,6 +59,7 @@ ${maintenanceModules.map((module: any) =>
 
       toast.success("Message sent!");
       form.reset();
+      setMessage("");
       setCharCount(0);
     } catch (err) {
       toast.error("Something went wrong. Please try again.");
