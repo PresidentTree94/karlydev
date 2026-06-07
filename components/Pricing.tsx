@@ -1,60 +1,18 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Modules from "./Modules";
+import { Price } from "@/types/priceType";
+import { calculateBuildTotal, calculateMonthlyTotal } from "@/utils/calculations";
 
-type Price = {
-  baseprice: number;
-  build: string[];
-  modules: {
-    id: string;
-    title: string;
-    icon: string;
-    isBuild: boolean;
-    description: string;
-    price: number;
-    multiple: boolean;
-    dependsOn: string[];
-    disabledBy: string;
-  }[]
-}
-
-export default function Pricing({ pricingData }: { pricingData: Price; }) {
-
-  const [selectedModules, setSelectedModules] = useState<Record<string, number | boolean>>({
-    additionalpages: 0,
-    cmsintegration: false,
-    contactform: false,
-    blog: false,
-    blogpage: 0,
-    legalpage: 0,
-    animations: false,
-    basemaintenance: false,
-    cmsblogmanage: false,
-    formmanage: false
-  });
+export default function Pricing({ pricingData, setConfirmProject, selectedModules, setSelectedModules }: {
+  pricingData: Price;
+  setConfirmProject: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedModules: Record<string, number | boolean>;
+  setSelectedModules: React.Dispatch<React.SetStateAction<Record<string, number | boolean>>>;
+}) {
 
   const buildModules = pricingData.modules?.filter(item => item.isBuild === true);
   const maintenanceModules = pricingData.modules?.filter(item => item.isBuild === false);
-
-  function calculateBuildTotal() {
-    let total = pricingData.baseprice;
-
-    buildModules.forEach(module => {
-      total += module.price * (selectedModules[module.id] as number);
-    });
-
-    return total;
-  }
-
-  function calculateMonthlyTotal() {
-    let total = 0;
-
-    maintenanceModules.forEach(module => {
-      total += module.price * (selectedModules[module.id] as number);
-    });
-
-    return total;
-  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -119,20 +77,20 @@ export default function Pricing({ pricingData }: { pricingData: Price; }) {
           <div className="border-t border-stone-700 pt-4">
             <div className="flex justify-between items-center font-bold">
               <span className="text-white">Build Total</span>
-              <span className="text-xl text-amber-400">${calculateBuildTotal().toLocaleString()}</span>
+              <span className="text-xl text-amber-400">${calculateBuildTotal(buildModules, selectedModules, pricingData).toLocaleString()}</span>
             </div>
             <div className="text-sm text-stone-400 space-y-1 mt-2">
               <div className="flex justify-between">
                 <span>Due upfront (50%)</span>
-                <span>${Math.ceil(calculateBuildTotal() / 2).toLocaleString()}</span>
+                <span>${Math.ceil(calculateBuildTotal(buildModules, selectedModules, pricingData) / 2).toLocaleString()}</span>
               </div>
               <div className="flex justify-between">
                 <span>Due on delivery (50%)</span>
-                <span>${Math.floor(calculateBuildTotal() / 2).toLocaleString()}</span>
+                <span>${Math.floor(calculateBuildTotal(buildModules, selectedModules, pricingData) / 2).toLocaleString()}</span>
               </div>
             </div>
           </div>
-          {calculateMonthlyTotal() > 0 && <div className="border-t border-stone-700 pt-4">
+          {calculateMonthlyTotal(maintenanceModules, selectedModules) > 0 && <div className="border-t border-stone-700 pt-4">
             <div className="grid grid-cols-[1fr_auto] gap-3 text-sm">
               {maintenanceModules.map((module) => (
                 Boolean(selectedModules[module.id]) &&
@@ -149,11 +107,11 @@ export default function Pricing({ pricingData }: { pricingData: Price; }) {
             </div>
             <div className="flex justify-between items-center font-bold mt-3">
               <span className="text-white">Monthly Total</span>
-              <span className="text-lg text-amber-400">${calculateMonthlyTotal()}/mo</span>
+              <span className="text-lg text-amber-400">${calculateMonthlyTotal(maintenanceModules, selectedModules)}/mo</span>
             </div>
           </div>}
-          <a href="#contact" className="bg-amber-400 text-stone-900 text-sm font-bold text-center py-3.5 rounded-xl block mb-3 transition-colors hover:bg-amber-300">Start Your Project</a>
-          <p className="text-xs text-stone-500 text-center">Fixed pricing. No surprises, no negotiations — what you see is what you pay.</p>
+          <a href="#contact" className="bg-amber-400 text-stone-900 text-sm font-bold text-center py-3.5 rounded-xl block mb-3 transition-colors hover:bg-amber-300" onClick={() => {setConfirmProject(false); setConfirmProject(true);}}>Start Your Project</a>
+          <p className="text-xs text-stone-500 text-center">Click the button to copy the estimate to the contact form</p>
         </div>
       </div>
     </div>
