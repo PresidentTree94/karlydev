@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import Link from "next/link";
 import { client } from "@/sanity/lib/client"
 import { homepageQuery } from "@/sanity/lib/queries";
@@ -14,7 +12,7 @@ const contacts = [
 
 export default async function Home() {
 
-  const heroData = await client.fetch(homepageQuery);
+  const heroData = await client.fetch(homepageQuery, {}, { next: { tags: ["homepage"] } });
 
   return (
     <>

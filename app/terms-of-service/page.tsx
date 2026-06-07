@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import { client } from "@/sanity/lib/client"
 import { legalQuery } from "@/sanity/lib/queries";
 import Page from "@/components/Page";
@@ -27,7 +25,7 @@ export const metadata = {
 
 export default async function ToS() {
 
-  const tosData = await client.fetch(legalQuery, { slug: "terms-of-service" });
+  const tosData = await client.fetch(legalQuery, { slug: "terms-of-service" }, { next: { tags: ["legalpage"] } });
 
   return (
     <Page subtitle="Legal" legalData={tosData} />

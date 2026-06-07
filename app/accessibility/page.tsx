@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import { client } from "@/sanity/lib/client"
 import { legalQuery } from "@/sanity/lib/queries";
 import Page from "@/components/Page";
@@ -27,7 +25,7 @@ export const metadata = {
 
 export default async function Accessibility() {
 
-  const accessibilityData = await client.fetch(legalQuery, { slug: "accessibility" })
+  const accessibilityData = await client.fetch(legalQuery, { slug: "accessibility" }, { next: { tags: ["legalpage"] } });
 
   return (
     <Page subtitle="Commitment" legalData={accessibilityData} />

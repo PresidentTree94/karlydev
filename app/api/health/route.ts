@@ -6,7 +6,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get("Authorization");
+  const authHeader = req.headers.get("authorization");
   if (authHeader !== `Bearer ${process.env.HEALTH_CHECK_SECRET}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

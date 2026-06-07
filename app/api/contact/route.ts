@@ -1,14 +1,15 @@
+import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
 
     const budget = formData.get("budget");
     if (budget && budget.toString().trim() !== "") {
-      return Response.json({ success: true });
+      return NextResponse.json({ success: true });
     }
 
     const name = formData.get("name")?.toString().trim();
@@ -17,7 +18,7 @@ export async function POST(req: Request) {
     const message = formData.get("message")?.toString().trim();
 
     if (!name || !email || !subject || !message) {
-      return Response.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
     await resend.emails.send({
@@ -31,9 +32,9 @@ export async function POST(req: Request) {
       `,
     });
 
-    return Response.json({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error: any) {
     console.error("Contact form error: ", error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

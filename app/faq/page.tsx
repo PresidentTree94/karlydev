@@ -1,5 +1,3 @@
-export const revalidate = 60;
-
 import { client } from "@/sanity/lib/client"
 import { faqQuery } from "@/sanity/lib/queries"
 import FAQ from "./FAQ";
@@ -26,7 +24,7 @@ export const metadata = {
 };
 
 export default async function FAQPage() {
-  const faqData = await client.fetch(faqQuery);
+  const faqData = await client.fetch(faqQuery, {}, { next: { tags: ["faqpage"] } });
   return (
     <FAQ faqData={faqData} />
   )
