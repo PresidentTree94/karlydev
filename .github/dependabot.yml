@@ -26,8 +26,6 @@ updates:
       ui-utilities:
         patterns:
           - "react-hot-toast"
-    labels:
-      - "dependencies"
     ignore:
       # Ignore major version bumps for core framework — review these manually
       - dependency-name: "next"
