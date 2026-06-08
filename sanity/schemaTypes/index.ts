@@ -1,8 +1,10 @@
 import { type SchemaTypeDefinition } from 'sanity'
+
 import homepage from './documents/homepage'
 import pricingpage from './documents/pricingpage'
 import faqpage from './documents/faqpage'
 import legalpage from './documents/legalpage'
+
 import serviceitem from './objects/serviceitem'
 import moduleitem from './objects/moduleitem'
 import termitem from './objects/termitem'
