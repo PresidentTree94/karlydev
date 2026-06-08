@@ -1,0 +1,36 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    groups:
+      next:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+      sanity:
+        patterns:
+          - "@sanity/*"
+          - "sanity"
+          - "next-sanity"
+      vercel:
+        patterns:
+          - "@vercel/*"
+      resend:
+        patterns:
+          - "resend"
+      ui-utilities:
+        patterns:
+          - "react-hot-toast"
+    labels:
+      - "dependencies"
+    ignore:
+      # Ignore major version bumps for core framework — review these manually
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "sanity"
+        update-types: ["version-update:semver-major"]
