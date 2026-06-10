@@ -18,7 +18,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const websiteTitle = "karly.dev - Freelance Junior Web Developer";
+const websiteTitle = "karly.dev - Freelance Web Developer";
 const websiteDescription = "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons.";
 const websiteURL = "https://karlydev.vercel.app";
 
@@ -61,7 +61,7 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "Person",
                 "name": "Karly Sams",
-                "jobTitle": "Freelance Junior Web Developer",
+                "jobTitle": "Freelance Web Developer",
                 "url": "https://karlydev.vercel.app",
                 "sameAs": [
                   "https://github.com/PresidentTree94"
@@ -76,7 +76,7 @@ export default function RootLayout({
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 "url": "https://karlydev.vercel.app",
-                "name": "karly.dev - Freelance Junior Web Developer",
+                "name": "karly.dev - Freelance Web Developer",
                 "description": "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons."
               }).replace(/</g, "\\u003c")
             }}

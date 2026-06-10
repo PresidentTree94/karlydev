@@ -37,7 +37,7 @@ export default function HomePage({ heroData, pricingData }: { heroData: Home; pr
             "@context": "https://schema.org",
             "@type": "WebPage",
             "url": "https://karlydev.vercel.app",
-            "name": "karly.dev - Freelance Junior Web Developer",
+            "name": "karly.dev - Freelance Web Developer",
             "description": "Building custom Next.js websites on Vercel with Sanity CMS and Resend add-ons."
           }).replace(/</g, "\\u003c")
         }}
