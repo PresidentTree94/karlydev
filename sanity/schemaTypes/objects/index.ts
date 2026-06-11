@@ -1,0 +1,5 @@
+export { default as faqitem } from './faqitem'
+export { default as legalitem } from './legalitem'
+export { default as moduleitem } from './moduleitem'
+export { default as serviceitem } from './serviceitem'
+export { default as termitem } from './termitem'
