@@ -21,6 +21,7 @@ export default function Navbar() {
       setScrolled(true);
       return;
     }
+    setScrolled(false);
     const handleScroll = () => setScrolled(window.scrollY > 64);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
