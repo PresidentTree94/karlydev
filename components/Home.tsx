@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Pricing from "./Pricing";
 import Contact from './Contact';
 import { Home } from "@/types/homeType";
@@ -11,6 +12,10 @@ const contacts = [
   { title: "Response time", text: "Within 48 hours (business days)", icon: "ri-time-line" },
   { title: "Availability", text: "Remote-only in the US", icon: "ri-global-line" }
 ];
+
+const projects = [
+  { title: "Project Portfolio", description: "A personal portfolio website showcasing my skills, experience, and projects.", image: "/ProjectPortfolio.png", link: "https://project-portfolio-jade-nu.vercel.app", modules: ["CMS"] },
+]
 
 export default function HomePage({ heroData, pricingData }: { heroData: Home; pricingData: Price; }) {
 
@@ -103,16 +108,39 @@ export default function HomePage({ heroData, pricingData }: { heroData: Home; pr
                 <p className="subtitle">Selected work</p>
                 <h2>Recent projects.</h2>
               </div>
-              <p className="text-stone-500 text-sm max-w-xs">Fresh projects will be showcased here as soon as they're ready.</p>
+              <p className="text-stone-500 text-sm max-w-xs flex-1">{projects.length === 0 ? "Fresh projects will be showcased here as soon as they're ready." : "A mix of small business, creative, and professional service sites."}</p>
             </div>
-            <div className="bg-white px-6 py-24 rounded-2xl border border-stone-200 text-center flex flex-col items-center">
-              <div className="w-16 h-16 bg-stone-100 rounded-2xl flex justify-center items-center mb-6">
-                <i className="ri-tools-line text-2xl text-stone-400"></i>
+            {projects.length === 0 ? (
+              <div className="bg-white px-6 py-24 rounded-2xl border border-stone-200 text-center flex flex-col items-center">
+                <div className="w-16 h-16 bg-stone-100 rounded-2xl flex justify-center items-center mb-6">
+                  <i className="ri-tools-line text-2xl text-stone-400"></i>
+                </div>
+                <h3 className="font-display text-xl font-semibold text-stone-800">Projects are being crafted right now</h3>
+                <p className="text-stone-500 text-sm max-w-md mt-2 mb-6">Check back soon — exciting work is on the way. In the meantime, feel free to reach out if you'd like to be part of the showcase.</p>
+                <a href="#contact" className="text-sm font-medium text-amber-600 transition-colors hover:text-amber-700">Start a project <i className="ri-arrow-right-line"></i></a>
               </div>
-              <h3 className="font-display text-xl font-semibold text-stone-800">Projects are being crafted right now</h3>
-              <p className="text-stone-500 text-sm max-w-md mt-2 mb-6">Check back soon — exciting work is on the way. In the meantime, feel free to reach out if you'd like to be part of the showcase.</p>
-              <a href="#contact" className="text-sm font-medium text-amber-600 transition-colors hover:text-amber-700">Start a project <i className="ri-arrow-right-line"></i></a>
-            </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects.map((project, index) => (
+                  <a href={project.link} key={index} target="_blank" rel="noopener noreferrer"className="bg-white rounded-2xl overflow-hidden group">
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image src={project.image} alt={project.title} fill sizes="100%" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                    </div>
+                    <div className="p-5 flex flex-col justify-between gap-4">
+                      <div>
+                        <h3 className="font-semibold text-stone-900">{project.title}</h3>
+                        <p className="text-sm text-stone-500 mt-2">{project.description}</p>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 text-xs text-stone-600">
+                        {project.modules?.map((module, index) => (
+                          <span key={index} className="bg-stone-100 px-2.5 py-1 rounded-full">{module}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </section>
         {/* Pricing Section */}
@@ -139,7 +167,7 @@ export default function HomePage({ heroData, pricingData }: { heroData: Home; pr
                 <p className="subtitle">How I work</p>
                 <h2>Clear terms. No surprises.</h2>
               </div>
-              <p className="lg:text-right text-stone-500 text-sm max-w-sm">I keep things simple and transparent. Here's what to expect when we work together.</p>
+              <p className="lg:text-right text-stone-500 text-sm max-w-sm flex-1">I keep things simple and transparent. Here's what to expect when we work together.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-sm">
               {heroData.terms?.map((contract: any, index: number) => (
