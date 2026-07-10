@@ -122,7 +122,7 @@ export default function HomePage({ heroData, pricingData }: { heroData: Home; pr
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project, index) => (
-                  <a href={project.link} key={index} target="_blank" rel="noopener noreferrer"className="bg-white rounded-2xl overflow-hidden group">
+                  <a href={project.link} key={index} target="_blank" rel="noopener noreferrer" className="bg-white rounded-2xl overflow-hidden group">
                     <div className="relative aspect-video overflow-hidden">
                       <Image src={project.image} alt={project.title} fill sizes="100%" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
                     </div>
